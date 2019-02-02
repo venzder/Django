@@ -8,10 +8,10 @@ def index(request):
     )
 
 
-def catalog(request):
+def about(request):
     return render(
         request,
-        'catalog.html'
+        'about.html'
     )
 
 
