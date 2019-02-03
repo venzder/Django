@@ -1,24 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Контакты</title>
-    <link rel="stylesheet" href="/static/main/css/style.css">
-</head>
-<body>
-<div class="container">
-<div class="header">
-    <div class="img_head">
-    <img src="../static/images/logo.png" alt="Logo">
-        </div>
-    <h3>Магазин игрушек "Фантазия"</h3>
-    <ul class="head_list">
-        <li><a href="/">Главная</a></li>
-        <li><a href="/about/">О проекте</a></li>
-        <li><a href="/contacts/">Контакты</a></li>
-    </ul>
-    </div>
-    <hr>
+{% extends 'server/master.html' %}
+
+{% block page_content %}
 <h1>Контакты</h1>
 <form action="contacts.html">
     <fieldset>
@@ -46,10 +28,4 @@
 <script type="text/javascript" charset="utf-8" async
         src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A75639127a05e68a85ccb6a7048d7e9caddf35ad3256dcc8ec7141e23d28041ba&amp;width=100%25&amp;height=374&amp;lang=ru_RU&amp;scroll=true"></script>
 </div>
-    <div class="footer">
-<hr>
-    <p>&copy;Все права защищены</p>
-</div>
-</div>
-</body>
-</html>
+{% endblock %}

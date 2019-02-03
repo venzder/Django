@@ -1,33 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Магазин игрушек "Фантазия"</title>
-    <link rel="stylesheet" href="/static/main/css/style.css">
-</head>
-<body>
-<div class="container">
-<div class="header">
-    <div class="img_head">
-    <img src="../static/images/logo.png" alt="Logo">
-        </div>
-    <h3>Магазин игрушек "Фантазия"</h3>
-    <ul class="head_list">
-        <li><a href="/">Главная</a></li>
-        <li><a href="/about/">О проекте</a></li>
-        <li><a href="/contacts/">Контакты</a></li>
-    </ul>
-    </div>
-    <hr>
+{% extends 'server/master.html' %}
+
+{% block page_content %}
 <h1>Главная</h1>
 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aliquam assumenda culpa dolor dolorem est excepturi,
     illo illum in inventore ipsa laborum laudantium, maxime nemo nesciunt non odit officia quas ratione repellat
     reprehenderit sunt temporibus totam ut veniam? Alias consectetur est et fuga laboriosam quas quod repudiandae sed
     soluta voluptatem.</p>
-<div class="footer">
-<hr>
-    <p>&copy;Все права защищены</p>
-</div>
-</div>
-</body>
-</html>
+{% endblock %}

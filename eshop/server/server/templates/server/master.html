@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Магазин игрушек "Фантазия"</title>
+    <link rel="stylesheet" href="/static/main/css/style.css">
+</head>
+<body>
+<div class="container">
+<div class="header">
+    <div class="img_head">
+    <img src="../static/images/logo.png" alt="Logo">
+        </div>
+    <h3>Магазин игрушек "Фантазия"</h3>
+    <ul class="head_list">
+        <li><a href="/">Главная</a></li>
+        <li><a href="/about/">О проекте</a></li>
+        <li><a href="/contacts/">Контакты</a></li>
+    </ul>
+    </div>
+    <hr>
+
+{% block page_content %}
+    {% endblock %}
+
+
+<div class="footer">
+<hr>
+    <p>&copy;Все права защищены</p>
+</div>
+</div>
+</body>
+</html>
