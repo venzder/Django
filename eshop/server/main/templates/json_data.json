@@ -1,0 +1,72 @@
+[
+  {
+    "name": "Медведь",
+    "description": "Мягкая игрушка 'Медведь'",
+    "src": "bear.jpg",
+    "alt": "Bear",
+    "title": "Игрушка Медведь"
+  },
+  {
+    "name": "Автомобиль",
+    "description": "Игрушка радиоуправляемая 'Автомобиль'",
+    "src": "car.jpg",
+    "alt": "Car",
+    "title": "Игрушка Автомобиль"
+  },
+  {
+    "name": "Динозавр",
+    "description": "Игрушка 'Динозавр'",
+    "src": "dinosaur.jpg",
+    "alt": "Dinosaur",
+    "title": "Игрушка Динозавр"
+  },
+  {
+    "name": "Танк",
+    "description": "Игрушка 'Танк'",
+    "src": "tank.jpg",
+    "alt": "Tank",
+    "title": "Игрушка Танк"
+  },
+  {
+    "name": "Самолет",
+    "description": "Игрушка 'Самолет'",
+    "src": "aircraft.jpg",
+    "alt": "Aircraft",
+    "title": "Игрушка Самолет"
+  },
+  {
+    "name": "Цыпленок",
+    "description": "Игрушка 'Цыпленок'",
+    "src": "chicken.jpg",
+    "alt": "Chicken",
+    "title": "Игрушка Цыпленок"
+  },
+  {
+    "name": "Обезьяна",
+    "description": "Игрушка 'Обезьяна'",
+    "src": "monkey.jpg",
+    "alt": "Monkey",
+    "title": "Игрушка Обезьяна"
+  },
+  {
+    "name": "Спиннер",
+    "description": "Игрушка 'Спиннер'",
+    "src": "spinner.jpg",
+    "alt": "Spinner",
+    "title": "Игрушка Спиннер"
+  },
+  {
+    "name": "Спираль",
+    "description": "Игрушка 'Спираль'",
+    "src": "spiral.jpg",
+    "alt": "Spiral",
+    "title": "Игрушка Спираль"
+  },
+  {
+    "name": "Юла",
+    "description": "Игрушка 'Юла'",
+    "src": "top.jpg",
+    "alt": "Top",
+    "title": "Игрушка Юла"
+  }
+]
