@@ -1,24 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Каталог</title>
-    <link rel="stylesheet" href="../static/css/style.css">
-</head>
-<body>
-<div class="container">
-<div class="header">
-    <div class="img_head">
-    <img src="../static/images/logo.png" alt="Logo">
-        </div>
-    <h3>Магазин игрушек "Фантазия"</h3>
-    <ul class="head_list">
-        <li><a href="/">Главная</a></li>
-        <li><a href="/catalog/">Каталог</a></li>
-        <li><a href="/contacts/">Контакты</a></li>
-    </ul>
-    </div>
-    <hr>
+{% extends 'server/master.html' %}
+
+
+{% block page_content %}
 <h1>Каталог</h1>
 <div class="image_cat">
 <div class="cat_product">
@@ -72,10 +55,4 @@
 <a href="products/top.html">Юла</a>
 </div>
     </div>
-<div class="footer">
-<hr>
-    <p>&copy;Все права защищены</p>
-</div>
-</div>
-</body>
-</html>
+{% endblock %}
