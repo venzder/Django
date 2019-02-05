@@ -1,10 +1,13 @@
-{% load static %}
-
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Магазин игрушек "Фантазия"</title>
+    <title>
+        {% block title %}
+            {{ title|title }}
+        {% endblock %}
+    </title>
     <link rel="stylesheet" href="{% static 'server/css/master.css' %}">
 </head>
 <body>
@@ -29,7 +32,9 @@
 <div class="footer">
 <hr>
     <p>&copy;Все права защищены</p>
-    <div>{% now 'd.m.Y' %}</div>
+    <div>
+        {% now 'd.m.Y' %}
+    </div>
 </div>
 </div>
 </body>
