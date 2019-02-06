@@ -10,9 +10,9 @@
 
 {% for object in object_list %}
 <div class="cat_product">
-<img src="../static/images/{{ object.src }}" alt="{{ object.alt }}" title="{{ object.title }}">
+<img src="../static/images/{{ object.image }}" alt="{{ object.alt }}" title="{{ object.title }}">
 <p>{{ object.description }}</p>
-<a href="#">{{ object.name }}</a>
+<a href="/products/{{ forloop.counter0 }}/">{{ object.name }}</a>
 </div>
     {% endfor %}
 

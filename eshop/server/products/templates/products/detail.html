@@ -7,13 +7,14 @@
 <h1>{{ object.description }}</h1>
 <div class="product_type">
     <div class="product_typeChild">
-    <a href="#" target="_blanc"><img src="/static/images/{{ object.src }}" alt="{{ object.alt }}" title="{{ object.title }}" class="img_toy"></a>
+    <a href="#" target="_blanc"><img src="/static/images/{{ object.image }}" alt="{{ object.alt }}" title="{{ object.title }}" class="img_toy"></a>
     </div>
     <div class="product_typeChild">
         <h2>Описание товара</h2>
     <p class="summery">{{ object.full_description }}</p>
     <a href="#" class="button">Купить</a>
     </div>
+    <span>{{ object.coast }}</span>
 </div>
 <h4>Возраст</h4>
 <p>От 12 месяцев</p>
