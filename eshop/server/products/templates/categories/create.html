@@ -4,10 +4,6 @@
 Категории
 {% endblock %}
 {% block page_content %}
-<form action="" method="POST">
-    {% csrf_token %}
-    {{ form.as_table }}
-    <input type="submit" value="Отправить">
-</form>
+{% include 'server/form.html' with form=form %}
 
 {% endblock %}
