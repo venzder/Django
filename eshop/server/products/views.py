@@ -2,7 +2,7 @@ import json
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from .models import Product, Category
-from .forms import CategoryForm
+from .forms import CategoryForm, CategoryModelForm
 
 
 def product_list_view(request):
@@ -28,16 +28,17 @@ def product_detail_view(request, pk):
 
 
 def category_create_view(request):
-    form = CategoryForm()
+    form = CategoryModelForm()
     success_url = reverse('list')
     if request.method == 'POST':
-        form = CategoryForm(data=request.POST)
+        form = CategoryModelForm(data=request.POST)
         if form.is_valid():
-            obj = Category(
-                name=form.cleaned_data.get('name'),
-                description=form.cleaned_data.get('description')
-            )
-            obj.save()
+            form.save()
+            # obj = Category(
+            #     name=form.cleaned_data.get('name'),
+            #     description=form.cleaned_data.get('description')
+            # )
+            # obj.save()
             return redirect(success_url)
     return render(
         request,
