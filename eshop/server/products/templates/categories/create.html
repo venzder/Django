@@ -6,15 +6,8 @@
 {% block page_content %}
 <form action="" method="POST">
     {% csrf_token %}
-    <div class="field-group">
-        <label for="name">Name</label>
-        <input name="name" type="text" id="name">
-    </div>
-    <div class="field-group">
-        <label for="description">Description</label>
-        <textarea name="description" cols="30" rows="10" id="description"></textarea>
-    </div>
-    <input type="submit">
+    {{ form.as_table }}
+    <input type="submit" value="Отправить">
 </form>
 
 {% endblock %}

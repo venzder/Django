@@ -1,6 +1,7 @@
 import json
 from django.shortcuts import render
 from .models import Product, Category
+from .forms import CategoryForm
 
 
 def product_list_view(request):
@@ -26,6 +27,7 @@ def product_detail_view(request, pk):
 
 
 def category_create_view(request):
+    form = CategoryForm()
     if request.method == 'POST':
         obj = Category(
             name=request.POST.get('name'),
@@ -34,5 +36,6 @@ def category_create_view(request):
         obj.save()
     return render(
         request,
-        'categories/create.html'
+        'categories/create.html',
+        {'form': form}
     )
