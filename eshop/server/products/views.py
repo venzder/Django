@@ -66,6 +66,7 @@ def category_update_view(request, pk):
             return redirect(success_url)
     return render(
         request,
-        'categories/update.html'
+        'categories/update.html',
+        {'form': form}
     )
 
