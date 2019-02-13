@@ -1,9 +1,37 @@
-{% extends 'server/master.html' %}
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}
+            {{ title|title }}
+        {% endblock %}
+    </title>
+    <link rel="stylesheet" href="{% static 'server/css/master.css' %}">
+</head>
+<body>
+<div class="container">
+<div class="header">
+    <div class="img_head">
+    <img src="/static/server/images/logo.png" alt="Logo">
+        </div>
+    <h3>Магазин игрушек "Фантазия"</h3>
 
-{% block title %}
-{{ title }}
-{% endblock %}
+    </div>
+    <hr>
+
 {% block page_content %}
-{% include 'server/form.html' with form=form %}
+    {% endblock %}
 
-{% endblock %}
+
+<div class="footer">
+<hr>
+    <p>&copy;Все права защищены</p>
+    <div>
+        {% now 'd.m.Y' %}
+    </div>
+</div>
+</div>
+</body>
+</html>

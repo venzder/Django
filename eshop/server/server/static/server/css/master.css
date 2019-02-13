@@ -87,7 +87,7 @@ input[type="email"]:focus {
 .header {
     height: 200px;
     position: relative;
-    background: url("/static/images/background.jpg");
+    background: url("/server/images/background.jpg");
 }
 .header img {
     width: 130px;

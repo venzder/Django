@@ -1,7 +1,7 @@
-{% extends 'server/master.html' %}
+{% extends 'accounts/base.html' %}
 
 {% block title %}
-{{ title }}
+{{ title|title }}
 {% endblock %}
 {% block page_content %}
 <form class="form-horizontal" action="{% url 'auth:login' %}" method="post">
@@ -9,6 +9,11 @@
         {{ login_form.as_p }}
         <br>
         <input class="form-control" type="submit" value="войти">
-    </form>
+</form>
+<button class="btn btn-round form-control">
+        <a href="{% url 'auth:register' %}" class="">
+            зарегистрироваться
+        </a>
+    </button>
 
 {% endblock %}
