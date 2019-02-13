@@ -1,14 +1,27 @@
 <ul class="head_list">
-    {% for link in links_menu %}
         <li>
-            <a href="{% url link.href %}"
-               class="{% if request.resolver_match.url_name == link.href %}
+            <a href="{% url 'index' %}"
+               class="{% if request.resolver_match.url_name == 'index' %}
                         active
                       {% endif %}">
-                {{ link.name }}
+                Главная
             </a>
-
         </li>
-    {% endfor %}
+        <li>
+            <a href="{% url 'about' %}"
+               class="{% if request.resolver_match.url_name == 'about' %}
+                        active
+                      {% endif %}">
+                О проекте
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'contacts' %}"
+               class="{% if request.resolver_match.url_name == 'contacts' %}
+                        active
+                      {% endif %}">
+                Контакты
+            </a>
+        </li>
 
 </ul>
