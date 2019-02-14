@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.http import Http404
 from .models import Product, Category
-from .forms import CategoryForm, CategoryModelForm
+from .forms import CategoryForm, CategoryModelForm, ProductModelForm
 
 
 def product_list_view(request):
@@ -67,6 +67,21 @@ def category_update_view(request, pk):
     return render(
         request,
         'categories/update.html',
+        {'form': form}
+    )
+
+
+def product_create_view(request):
+    form = ProductModelForm()
+    success_url = reverse('list')
+    if request.method == 'POST':
+        form = CategoryModelForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect(success_url)
+    return render(
+        request,
+        'product_create/productcreate.html',
         {'form': form}
     )
 
