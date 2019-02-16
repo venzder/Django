@@ -1,6 +1,6 @@
 <ul class="head_list">
         <li>
-            <a href="{% url 'index' %}"
+            <a href="{% url 'main:index' %}"
                class="{% if request.resolver_match.url_name == 'index' %}
                         active
                       {% endif %}">
@@ -8,7 +8,7 @@
             </a>
         </li>
         <li>
-            <a href="{% url 'about' %}"
+            <a href="{% url 'main:about' %}"
                class="{% if request.resolver_match.url_name == 'about' %}
                         active
                       {% endif %}">
@@ -16,11 +16,19 @@
             </a>
         </li>
         <li>
-            <a href="{% url 'contacts' %}"
+            <a href="{% url 'main:contacts' %}"
                class="{% if request.resolver_match.url_name == 'contacts' %}
                         active
                       {% endif %}">
                 Контакты
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'products:list' %}"
+               class="{% if request.resolver_match.url_name == 'contacts' %}
+                        active
+                      {% endif %}">
+                Витрина
             </a>
         </li>
         {% if user.is_authenticated %}

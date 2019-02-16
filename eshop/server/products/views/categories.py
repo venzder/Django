@@ -2,35 +2,13 @@ import json
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.http import Http404
-from .models import Product, Category
-from .forms import CategoryForm, CategoryModelForm, ProductModelForm
-
-
-def product_list_view(request):
-    # with open('products/fixtures/data/data.json', encoding='utf-8') as file:
-    #     data = json.load(file)
-    data = Product.objects.all()
-    return render(
-        request,
-        'products/catalog.html',
-        {'object_list': data}
-    )
-
-
-def product_detail_view(request, pk):
-    # with open('products/fixtures/data/data.json', encoding='utf-8') as file:
-    #     data = json.load(file)
-    data = Product.objects.get(pk=pk)
-    return render(
-        request,
-        'products/detail.html',
-        {'object': data}
-    )
+from products.models import Category
+from products.forms import CategoryForm, CategoryModelForm
 
 
 def category_create_view(request):
     form = CategoryModelForm()
-    success_url = reverse('list')
+    success_url = reverse('products:list')
     if request.method == 'POST':
         form = CategoryModelForm(data=request.POST)
         if form.is_valid():
@@ -54,7 +32,7 @@ def category_update_view(request, pk):
     except Exception as arr:
         raise Http404
     form = CategoryModelForm(instance=obj)
-    success_url = reverse('list')
+    success_url = reverse('products:list')
     if request.method == 'POST':
         form = CategoryModelForm(
             request.POST,
@@ -67,21 +45,6 @@ def category_update_view(request, pk):
     return render(
         request,
         'categories/update.html',
-        {'form': form}
-    )
-
-
-def product_create_view(request):
-    form = ProductModelForm()
-    success_url = reverse('list')
-    if request.method == 'POST':
-        form = CategoryModelForm(data=request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect(success_url)
-    return render(
-        request,
-        'product_create/productcreate.html',
         {'form': form}
     )
 

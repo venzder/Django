@@ -1,20 +1,5 @@
 from django import forms
-from .models import Category, Product
-
-
-class CategoryForm(forms.Form):
-    name = forms.CharField(required=True, widget=forms.widgets.Textarea(attrs={'class': 'model-form'}))
-    description = forms.CharField(widget=forms.widgets.Textarea(attrs={'class': 'model-form'}))
-
-
-class CategoryModelForm(forms.ModelForm):
-    class Meta:
-        model = Category
-        fields = ['name', 'description']
-        widgets = {
-            'name': forms.widgets.TextInput(attrs={'class': 'model-form'}),
-            'description': forms.widgets.Textarea(attrs={'class': 'model-form'})
-        }
+from products.models import Product, Category
 
 
 class ProductModelForm(forms.ModelForm):
@@ -33,4 +18,3 @@ class ProductModelForm(forms.ModelForm):
             'title': forms.widgets.TextInput(attrs={'class': 'model-form'}),
             'coast': forms.widgets.NumberInput(attrs={'class': 'model-form'})
         }
-
