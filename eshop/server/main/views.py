@@ -20,3 +20,5 @@ def contacts(request):
         request,
         'main/contacts.html'
     )
+
+

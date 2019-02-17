@@ -1,0 +1,55 @@
+{% extends 'server/master.html' %}
+
+{% block title %}
+{{ object.name }}
+{% endblock %}
+{% block page_content %}
+<h1>{{ object.description }}</h1>
+<div class="product_type">
+    <div class="product_typeChild">
+    <a href="#" target="_blanc"><img src="/media/products/{{ object.image }}" alt="{{ object.alt }}" title="{{ object.title }}" class="img_toy"></a>
+    </div>
+    <div class="product_typeChild">
+        <h2>Описание товара</h2>
+    <p class="summery">{{ object.full_description }}</p>
+    <a href="#" class="button">Купить</a>
+    </div>
+    <span>{{ object.coast }}</span>
+</div>
+<h4>Возраст</h4>
+<p>От 12 месяцев</p>
+<h2>Характеристики товара</h2>
+<table>
+    <tr class="tab_first">
+        <td rowspan="2">Характеристики</td>
+        <td colspan="4">Показатели</td>
+    </tr>
+    <tr>
+        <td>Lorem ipsum dolor sit.</td>
+        <td>Lorem ipsum dolor sit.</td>
+        <td>Lorem ipsum dolor sit.</td>
+        <td>Lorem ipsum dolor sit.</td>
+    </tr>
+    <tr>
+        <td>Характеристика</td>
+        <td>Lorem ipsum dolor sit.</td>
+        <td>Lorem ipsum dolor sit.</td>
+        <td>Lorem ipsum dolor sit.</td>
+        <td>Lorem ipsum dolor sit.</td>
+    </tr>
+    <tr>
+        <td>Характеристика</td>
+        <td>Lorem ipsum dolor sit.</td>
+        <td>Lorem ipsum dolor sit.</td>
+        <td>Lorem ipsum dolor sit.</td>
+        <td>Lorem ipsum dolor sit.</td>
+    </tr>
+</table>
+
+<h2>Подробное описание товара</h2>
+<p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio inventore laboriosam nulla placeat, saepe
+    tenetur voluptatibus. Aliquam blanditiis eos esse eum facere ipsum magni, maiores pariatur possimus quia quos rerum
+    tempora unde voluptate voluptatibus! Accusantium ad dolore, ea libero odio quis suscipit temporibus ut veritatis
+    voluptas. Architecto esse libero nostrum.</p>
+<hr>
+{% endblock %}
