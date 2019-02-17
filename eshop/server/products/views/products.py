@@ -61,3 +61,17 @@ def product_update_view(request, pk):
         'products/update.html',
         {'form': form}
     )
+
+
+def product_delete_view(request, pk):
+    obj = get_object_or_404(Product, pk=pk)
+    success_url = reverse('products:list')
+    if request.method == 'POST':
+        obj.delete()
+        return redirect(success_url)
+
+    return render(
+        request,
+        'products/delete.html',
+        {'object': obj}
+    )
