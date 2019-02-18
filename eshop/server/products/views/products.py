@@ -5,7 +5,7 @@ from django.urls import reverse, reverse_lazy
 from products.models import Product
 from products.forms import ProductModelForm
 from django.views.generic import (
-ListView, DetailView, CreateView, UpdateView, DeleteView
+    ListView, DetailView, CreateView, UpdateView, DeleteView
 )
 
 
@@ -14,7 +14,7 @@ class ProductListView(ListView):
     template_name = 'products/catalog.html'
 
 
-class ProductDetailView(DeleteView):
+class ProductDetailView(DetailView):
     model = Product
     template_name = 'products/detail.html'
 
