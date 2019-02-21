@@ -1,19 +1,9 @@
-{% extends 'accounts/base.html' %}
+{% extends 'server/master.html' %}
 
 {% block title %}
-{{ title|title }}
+Авторизация
 {% endblock %}
 {% block page_content %}
-<form class="form-horizontal" action="{% url 'auth:login' %}" method="post">
-        {% csrf_token %}
-        {{ login_form.as_p }}
-        <br>
-        <input class="form-control" type="submit" value="войти">
-</form>
-<button class="btn btn-round form-control">
-        <a href="{% url 'auth:register' %}" class="">
-            зарегистрироваться
-        </a>
-    </button>
+{% include 'server/form.html' with form=form %}
 
 {% endblock %}
