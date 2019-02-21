@@ -9,18 +9,34 @@ from products.models import Category
 from products.forms import CategoryForm, CategoryModelForm
 
 
+class CategoryListView(ListView):
+    model = Category
+    template_name = 'categories/catalog.html'
+
+
+class CategoryDetailView(DetailView):
+    model = Category
+    template_name = 'categories/detail.html'
+
+
 class CategoryCreateView(CreateView):
     model = Category
     form_class = CategoryModelForm
     template_name = 'categories/create.html'
-    success_url = reverse_lazy('products:list')
+    success_url = reverse_lazy('categories:list')
 
 
 class CategoriesUpdateView(UpdateView):
     model = Category
     fields = ['name', 'description']
     template_name = 'categories/update.html'
-    success_url = reverse_lazy('products:list')
+    success_url = reverse_lazy('categories:list')
+
+
+class CategoryDeleteView(DeleteView):
+    model = Category
+    template_name = 'categories/delete.html'
+    success_url = reverse_lazy('categories:list')
 
 
 def category_create_view(request):

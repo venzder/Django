@@ -1,0 +1,13 @@
+{% extends 'server/master.html' %}
+
+{% block title %}
+Удаление продуктов
+{% endblock %}
+{% block page_content %}
+<form method="POST" action="">
+    {% csrf_token %}
+    <span>Запись о {{ object }} будет удалена.</span>
+    <input type="submit">
+</form>
+
+{% endblock %}

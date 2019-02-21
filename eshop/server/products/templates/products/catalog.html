@@ -10,7 +10,11 @@
 
 {% for object in object_list %}
 <div class="cat_product">
-<img src="/media/products/{{ object.image }}" alt="{{ object.alt }}" title="{{ object.title }}">
+ {% if object.image %}
+<img src="{{ object.image.url }}" alt="{{ object.alt }}" title="{{ object.title }}">
+ {% else %}
+<a href="#" target="_blanc"><img src="{% static 'products/images/empty.png' %}" alt="empty" title="empty"></a>
+ {% endif %}
 <p>{{ object.description }}</p>
 <a href="{% url 'products:detail' pk=object.id %}">{{ object.name }}</a>
 </div>

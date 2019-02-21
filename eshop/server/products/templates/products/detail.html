@@ -7,7 +7,11 @@
 <h1>{{ object.description }}</h1>
 <div class="product_type">
     <div class="product_typeChild">
-    <a href="#" target="_blanc"><img src="/media/products/{{ object.image }}" alt="{{ object.alt }}" title="{{ object.title }}" class="img_toy"></a>
+    {% if object.image %}
+    <a href="#" target="_blanc"><img src="{{ object.image.url }}" alt="{{ object.alt }}" title="{{ object.title }}" class="img_toy"></a>
+    {% else %}
+    <a href="#" target="_blanc"><img src="{% static 'products/images/empty.png' %}" alt="empty" title="empty" class="img_toy"></a>
+    {% endif %}
     </div>
     <div class="product_typeChild">
         <h2>Описание товара</h2>
