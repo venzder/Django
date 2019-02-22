@@ -8,9 +8,10 @@
 <h1>Каталог</h1>
 <div class="image_cat">
 
-{% for object in page_obj %}
+{% for object in object_list %}
 {% include 'server/product.html' with id=object.pk image=object.image name=object.name description=object.description alt=object.alt title=object.title coast=object.coast %}
     {% endfor %}
 
     </div>
+{% include 'server/pagination.html' with page=page_obj page_range=paginator.page_range %}
 {% endblock %}

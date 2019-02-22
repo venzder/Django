@@ -18,4 +18,5 @@
     {% endfor %}
 
     </div>
+{% include 'server/pagination.html' with page=products page_range=products.paginator.page_range %}
 {% endblock %}

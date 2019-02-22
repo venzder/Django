@@ -1,6 +1,7 @@
 import json
 from django.shortcuts import render, redirect
 from django.urls import reverse, reverse_lazy
+from django.core.paginator import Paginator
 from django.http import Http404
 from django.views.generic import (
     ListView, DetailView, CreateView, UpdateView, DeleteView
@@ -22,9 +23,12 @@ class CategoryDetailView(DetailView):
         key = self.context_object_name if self.context_object_name else 'object'
         obj = kwargs.get(key)
         products = obj.product_set.all()
+        page = self.request.GET.get('page')
+        paginator = Paginator(products, 2)
+        page_obj = paginator.get_page(page)
         return {
             key: obj,
-            'products': products
+            'products': page_obj
         }
 
 
