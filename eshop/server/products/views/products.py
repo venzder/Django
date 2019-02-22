@@ -1,6 +1,7 @@
 import json
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse, reverse_lazy
+from django.core.paginator import Paginator
 # from django.http import Http404
 from products.models import Product
 from products.forms import ProductModelForm
@@ -13,6 +14,14 @@ class ProductListView(ListView):
     model = Product
     template_name = 'products/catalog.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(ProductListView, self).get_context_data(**kwargs)
+        queryset = context.get('object_list')
+        page = self.request.GET.get('page')
+        paginator = Paginator(queryset, 5)
+        page_obj = paginator.get_page(page)
+        context['page_obj'] = page_obj
+        return context
 
 class ProductDetailView(DetailView):
     model = Product

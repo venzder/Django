@@ -4,6 +4,18 @@
 {{ object.name }}
 {% endblock %}
 {% block page_content %}
-<h1>{{ object.description }}</h1>
+<div class="product">
+    <h1>{{ object.name }}</h1>
+    <span class="product_description">
+        {{object.description}}
+    </span>
+</div>
 
+<div class="image_cat">
+
+{% for product in products %}
+{% include 'server/product.html' with id=product.pk image=product.image name=product.name description=product.description alt=product.alt title=product.title coast=product.coast %}
+    {% endfor %}
+
+    </div>
 {% endblock %}
