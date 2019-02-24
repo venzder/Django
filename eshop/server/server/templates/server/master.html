@@ -8,7 +8,9 @@
             {{ title }}
         {% endblock %}
     </title>
+    {% block page_static %}
     <link rel="stylesheet" href="{% static 'server/css/master.css' %}">
+    {% endblock %}
 </head>
 <body>
 <div class="container">
@@ -35,5 +37,7 @@
     </div>
 </div>
 </div>
+{% block page_js %}
+    {% endblock %}
 </body>
 </html>

@@ -2,12 +2,57 @@ import json
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse, reverse_lazy
 from django.core.paginator import Paginator
-# from django.http import Http404
+from django.http import JsonResponse
 from products.models import Product
 from products.forms import ProductModelForm
 from django.views.generic import (
     ListView, DetailView, CreateView, UpdateView, DeleteView
 )
+
+
+class RestProductListView(ListView):
+    model = Product
+    template_name = 'products/catalog.html'
+    paginate_by = 2
+
+
+    def serialize_object_list(self, queryset):
+        return list(
+            map(
+                lambda itm: {
+                    'id': itm.id,
+                    'name': itm.name,
+                    'description': itm.description,
+                    'full_description': itm.full_description,
+                    'image': itm.image.url if itm.image else None,
+                    'category': itm.category.name if itm.category else None,
+                    'alt': itm.alt,
+                    'title': itm.title,
+                    'coast': itm.coast,
+                },
+                queryset
+            )
+        )
+
+    def get_context_data(self, **kwargs):
+        context = super(RestProductListView, self).get_context_data(**kwargs)
+        data = {}
+        page = context.get('page_obj')
+        route_url = reverse('rest_products:list')
+        data['next_url'] = None
+        data['previous_url'] = None
+        data['page'] = page.number
+        data['count'] = page.paginator.count
+        data['results'] = self.serialize_object_list(page.object_list)
+
+        if page.has_previous():
+            data['previous_url'] = f'{route_url}?page={page.previous_page_number()}'
+        if page.has_next():
+            data['next_url'] = f'{route_url}?page={page.next_page_number()}'
+        return data
+
+    def render_to_response(self, context, **response_kwargs):
+        return JsonResponse(context)
 
 
 class ProductListView(ListView):

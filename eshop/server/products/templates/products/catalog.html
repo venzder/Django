@@ -1,9 +1,13 @@
 {% extends 'server/master.html' %}
 {% load static %}
+
 {% block title %}
 Каталог
 {% endblock %}
 {% block page_content %}
+{% block page_static %}
+<link rel="stylesheet" href="{% static 'products/css/style.css' %}">
+{% endblock %}
 
 <h1>Каталог</h1>
 <div class="image_cat">
@@ -14,4 +18,36 @@
 
     </div>
 {% include 'server/pagination.html' with page=page_obj page_range=paginator.page_range %}
+{% if page_obj.has_next %}
+<button class="show-more-button">Show more</button>
+{% endif %}
+{% endblock %}
+{% block page_js %}
+<script src="{% static 'products/js/products.js' %}"></script>
+<script>
+
+    const products = document.querySelector('.image_cat');
+    const showMoreButton = document.querySelector('.show-more-button');
+
+    let productsUrl = '{% url "rest_products:list" %}?page={% if page_obj.has_next %}{{ page_obj.next_page_number }}{% endif %}'
+
+    const showMore = () => {
+        fetch(productsUrl)
+            .then(response => response.json())
+            .then(
+                data => {
+                    data.results.map(
+                        itm => products.innerHTML += renderProduct(itm)
+                    )
+                    if (data.next_url) {
+                        productsUrl = data.next_url
+                    } else {
+                        showMoreButton.classList.add('show-more-button_hidden')
+                    }
+                }
+        )
+    }
+    showMoreButton.addEventListener('click', showMore);
+
+</script>
 {% endblock %}
