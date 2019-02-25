@@ -12,9 +12,7 @@ from django.views.generic import (
 
 class RestProductListView(ListView):
     model = Product
-    template_name = 'products/catalog.html'
     paginate_by = 2
-
 
     def serialize_object_list(self, queryset):
         return list(

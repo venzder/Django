@@ -19,7 +19,8 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 router = [
-    path('products/', include('products.routes'))
+    path('products/', include('products.routes')),
+    path('categories/', include('products.routes.categories'))
 ]
 
 

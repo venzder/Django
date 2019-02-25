@@ -1,15 +1,10 @@
 from django.urls import path
 from products.views import (
-    category_create_view, category_update_view, CategoryCreateView,
-    CategoriesUpdateView, CategoryListView, CategoryDetailView, CategoryDeleteView
+    RestCategoryListView
 )
 
-app_name = 'categories'
+app_name = 'rest_categories'
 
 urlpatterns = [
-    path('', CategoryListView.as_view(), name='list'),
-    path('<int:pk>/', CategoryDetailView.as_view(), name='detail'),
-    path('create/', CategoryCreateView.as_view(), name='create'),
-    path('<int:pk>/update/', CategoriesUpdateView.as_view(), name='update'),
-    path('<int:pk>/delete/', CategoryDeleteView.as_view(), name='delete'),
+    path('', RestCategoryListView.as_view(), name='list'),
 ]
