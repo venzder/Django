@@ -82,7 +82,7 @@ class ProductCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     login_url = reverse_lazy('accounts:login')
 
     def test_func(self):
-        return self.request.user.is_superuser
+        return self.request.user.has_perm('products.add_product')
 
 
 class ProductUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
@@ -95,7 +95,7 @@ class ProductUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     login_url = reverse_lazy('accounts:login')
 
     def test_func(self):
-        return self.request.user.is_superuser
+        return self.request.user.has_perm('products.change_product')
 
 
 class ProductDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
