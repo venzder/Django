@@ -55,7 +55,7 @@
             .then(
                 data => (
                     data.results.reduce(
-                    (val, itm, idx) => val += renderCategory(itm)
+                    (val, itm, idx) => val += renderCategory(itm), ''
                     )
 
                 )
