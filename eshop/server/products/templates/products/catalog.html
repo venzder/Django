@@ -29,7 +29,7 @@
     const products = document.querySelector('.image_cat');
     const showMoreButton = document.querySelector('.show-more-button');
 
-    let productsUrl = '{% url "rest_products:list" %}?page={% if page_obj.has_next %}{{ page_obj.next_page_number }}{% endif %}'
+    let productsUrl = '/api/products/'
 
     const showMore = () => {
         fetch(productsUrl)
@@ -39,8 +39,8 @@
                     data.results.map(
                         itm => products.innerHTML += renderProduct(itm)
                     )
-                    if (data.next_url) {
-                        productsUrl = data.next_url
+                    if (data.next) {
+                        productsUrl = data.next
                     } else {
                         showMoreButton.classList.add('show-more-button_hidden')
                     }
