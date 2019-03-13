@@ -1,5 +1,7 @@
 import json
-from django.shortcuts import render, redirect, get_object_or_404
+from functools import reduce
+from django.shortcuts import render, redirect, get_object_or_404, get_list_or_404
+from django.db.models import Q
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -179,4 +181,46 @@ def product_delete_view(request, pk):
         request,
         'products/delete.html',
         {'object': obj}
+    )
+
+def product_json_list(request):
+    query_params = (
+        (key, list(map(int, value.split(','))) if key.endwith('_in') else value)
+        for key, value in request.GET.items()
+    )
+    query = get_list_or_404(
+        Product,
+        reduce(
+            lambda store, itm: store | Q(**{itm[0]: itm[1]}),
+            query_params,
+            Q()
+        )
+    )
+    return JsonResponse(
+        list(
+            map(
+                lambda itm: {
+                    'id': itm.id,
+                    'name': itm.name,
+                    'description': itm.description,
+                    'full_description': itm.full_description,
+                    'image': itm.image.url if itm.image else None,
+                    'category': itm.category.name if itm.category else None,
+                    'alt': itm.alt,
+                    'title': itm.title,
+                    'coast': itm.coast,
+                },
+                query
+            )
+        ),
+        safe=False
+    )
+
+def product_list(request):
+    query = get_list_or_404(Product)
+
+    return render(
+        request,
+        'products/catalog.html',
+        {'object_list': query}
     )
