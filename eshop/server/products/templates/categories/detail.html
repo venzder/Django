@@ -16,7 +16,7 @@
 
 <div class="image_cat">
 
-{% for product in object.product_set.all|paginate:request.GET %}
+{% for product in object.product_set.all|paginate:request.GET.page %}
 {% include 'server/product.html' with id=product.pk image=product.image name=product.name description=product.description alt=product.alt title=product.title coast=product.coast %}
     {% endfor %}
 
