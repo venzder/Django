@@ -6,10 +6,11 @@ from products.models import Product
 class ProductSerializer(ModelSerializer):
     category = SerializerMethodField()
     is_pure = SerializerMethodField()
+
     class Meta:
         model = Product
         fields = [
-            'url', 'name', 'description',
+            'url', 'id', 'name', 'description',
             'full_description', 'image', 'category',
             'alt', 'title', 'coast', 'is_pure'
         ]

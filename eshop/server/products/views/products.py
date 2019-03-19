@@ -183,6 +183,7 @@ def product_delete_view(request, pk):
         {'object': obj}
     )
 
+
 def product_json_list(request):
     query_params = (
         (key, list(map(int, value.split(','))) if key.endwith('_in') else value)
@@ -215,6 +216,7 @@ def product_json_list(request):
         ),
         safe=False
     )
+
 
 def product_list(request):
     query = get_list_or_404(Product)

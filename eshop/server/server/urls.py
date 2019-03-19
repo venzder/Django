@@ -22,7 +22,7 @@ from products.viewset import CategoryViewSet, ProductViewSet
 
 router = DefaultRouter()
 router.register('categories', CategoryViewSet)
-router.register('products', ProductViewSet)
+router.register('products', ProductViewSet, basename='product-list')
 
 router_django = [
     path('products/', include('products.routes')),

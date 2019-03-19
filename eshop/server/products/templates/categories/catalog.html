@@ -12,7 +12,7 @@
 <div class="cat_product">
 
 <p>{{ object.description }}</p>
-<a href="{% url 'categories:detail' pk=object.id %}">{{ object.name }}</a>
+<a href="{% url 'categories:detail' pk=object.id %}?page={{ page.number }}">{{ object.name }}</a>
 </div>
     {% endfor %}
 
