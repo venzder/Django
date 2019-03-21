@@ -1,5 +1,8 @@
 {% extends 'server/master.html' %}
+
 {% load static %}
+{% load pagination %}
+
 {% block title %}
 {{ object.name }}
 {% endblock %}
@@ -13,10 +16,11 @@
 
 <div class="image_cat">
 
-{% for product in products %}
+{% for product in object.product_set.all|paginate:request.GET.page %}
 {% include 'server/product.html' with id=product.pk image=product.image name=product.name description=product.description alt=product.alt title=product.title coast=product.coast %}
     {% endfor %}
 
     </div>
-{% include 'server/pagination.html' with page=products page_range=products.paginator.page_range %}
+{% pagination object.product_set.all %}
+<!--{% include 'server/pagination.html' with page=products page_range=products.paginator.page_range %}-->
 {% endblock %}

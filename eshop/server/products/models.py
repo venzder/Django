@@ -13,12 +13,12 @@ class Category(models.Model):
 
 class Product(models.Model):
     name = models.CharField(max_length=255, unique=True)
-    description = models.CharField(max_length=255, unique=True)
+    description = models.CharField(max_length=255, blank=True, null=True)
     full_description = models.TextField(blank=True, null=True)
     image = models.ImageField(upload_to='products', blank=True, null=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True, null=True)
-    alt = models.CharField(max_length=100)
-    title = models.CharField(max_length=100)
+    alt = models.CharField(max_length=100, blank=True, null=True)
+    title = models.CharField(max_length=100, blank=True, null=True)
     coast = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)

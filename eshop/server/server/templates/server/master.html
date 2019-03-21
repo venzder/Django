@@ -46,16 +46,15 @@
 <script>
     const categories = document.querySelector('.categories');
 
-    const categoriesUrl = '{% url "rest_categories:list" %}';
+    const categoriesUrl = '/api/categories/';
 
     const renderCategoryList = () => {
-        let categoriesString = '';
-        fetch(categoriesUrl)
+            fetch(categoriesUrl)
             .then(response => response.json())
             .then(
                 data => (
                     data.results.reduce(
-                    (val, itm, idx) => val += renderCategory(itm)
+                    (val, itm, idx) => val += renderCategory(itm), ''
                     )
 
                 )
