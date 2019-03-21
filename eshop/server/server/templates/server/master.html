@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% load staticfiles %}
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,7 +8,9 @@
             {{ title }}
         {% endblock %}
     </title>
+    {% block page_static %}
     <link rel="stylesheet" href="{% static 'server/css/master.css' %}">
+    {% endblock %}
 </head>
 <body>
 <div class="container">
@@ -22,6 +24,9 @@
     {% endblock %}
     </div>
     <hr>
+    <ul class="categories">
+
+    </ul>
 
 {% block page_content %}
     {% endblock %}
@@ -35,5 +40,34 @@
     </div>
 </div>
 </div>
+{% block page_js %}
+    {% endblock %}
+<script src="{% static 'server/js/categories.js' %}"></script>
+<script>
+    const categories = document.querySelector('.categories');
+
+    const categoriesUrl = '{% url "rest_categories:list" %}';
+
+    const renderCategoryList = () => {
+        let categoriesString = '';
+        fetch(categoriesUrl)
+            .then(response => response.json())
+            .then(
+                data => (
+                    data.results.reduce(
+                    (val, itm, idx) => val += renderCategory(itm)
+                    )
+
+                )
+            )
+            .then(
+                renderedString => {
+                categories.innerHTML = renderedString;
+        }
+        )
+
+    };
+    document.addEventListener("DOMContentLoaded", renderCategoryList);
+</script>
 </body>
 </html>

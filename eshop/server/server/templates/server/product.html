@@ -1,0 +1,20 @@
+{% load static %}
+
+<div class="cat_product">
+ {% if image %}
+<img src="{{ image.url }}" alt="{{ alt }}" title="{{ title }}">
+ {% else %}
+<a href="#" target="_blanc"><img src="{% static 'products/images/empty.png' %}" alt="empty" title="empty"></a>
+ {% endif %}
+<p>{{ description }}</p>
+<a href="{% url 'products:detail' pk=id %}">{{ name }}</a>
+    {% if coast %}
+    <span>
+        {{ coast }}
+    </span>
+    {% else %}
+    <span>
+        Значение отсутствует
+    </span>
+    {% endif %}
+</div>

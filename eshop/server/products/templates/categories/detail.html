@@ -1,0 +1,22 @@
+{% extends 'server/master.html' %}
+{% load static %}
+{% block title %}
+{{ object.name }}
+{% endblock %}
+{% block page_content %}
+<div class="product">
+    <h1>{{ object.name }}</h1>
+    <span class="product_description">
+        {{object.description}}
+    </span>
+</div>
+
+<div class="image_cat">
+
+{% for product in products %}
+{% include 'server/product.html' with id=product.pk image=product.image name=product.name description=product.description alt=product.alt title=product.title coast=product.coast %}
+    {% endfor %}
+
+    </div>
+{% include 'server/pagination.html' with page=products page_range=products.paginator.page_range %}
+{% endblock %}
