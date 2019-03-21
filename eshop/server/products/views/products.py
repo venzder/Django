@@ -1,6 +1,8 @@
 import json
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse, reverse_lazy
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.core.paginator import Paginator
 from django.http import JsonResponse
 from products.models import Product
@@ -66,31 +68,44 @@ class ProductListView(ListView):
     #     context['page_obj'] = page_obj
     #     return context
 
+
 class ProductDetailView(DetailView):
     model = Product
     template_name = 'products/detail.html'
 
 
-class ProductCreateView(CreateView):
+class ProductCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     model = Product
     form_class = ProductModelForm
     template_name = 'products/create.html'
     success_url = reverse_lazy('products:list')
+    login_url = reverse_lazy('accounts:login')
+
+    def test_func(self):
+        return self.request.user.has_perm('products.add_product')
 
 
-class ProductUpdateView(UpdateView):
+class ProductUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Product
     fields = [
         'name', 'description', 'full_description', 'image', 'category', 'alt', 'title', 'coast'
     ]
     template_name = 'products/create.html'
     success_url = reverse_lazy('products:list')
+    login_url = reverse_lazy('accounts:login')
+
+    def test_func(self):
+        return self.request.user.has_perm('products.change_product')
 
 
-class ProductDeleteView(DeleteView):
+class ProductDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Product
     template_name = 'products/delete.html'
     success_url = reverse_lazy('products:list')
+    login_url = reverse_lazy('accounts:login')
+
+    def test_func(self):
+        return self.request.user.is_superuser
 
 
 def product_list_view(request):
@@ -115,6 +130,7 @@ def product_detail_view(request, pk):
     )
 
 
+@login_required(login_url=reverse_lazy('accounts:login'))
 def product_create_view(request):
     form = ProductModelForm()
     success_url = reverse('products:list')
@@ -130,6 +146,7 @@ def product_create_view(request):
     )
 
 
+@login_required(login_url=reverse_lazy('accounts:login'))
 def product_update_view(request, pk):
     obj = get_object_or_404(Product, pk=pk)
     form = ProductModelForm(instance=obj)
@@ -150,6 +167,7 @@ def product_update_view(request, pk):
     )
 
 
+@login_required(login_url=reverse_lazy('accounts:login'))
 def product_delete_view(request, pk):
     obj = get_object_or_404(Product, pk=pk)
     success_url = reverse('products:list')
